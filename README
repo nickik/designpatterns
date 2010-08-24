@@ -1,0 +1,13 @@
+# designpatterns
+
+I§n this Project I work throw the book Entwurfsmuster von Kopf bis Fuss (in English: Head First Design Patterns). This is part of a schoolproject I do to prove that I write better more extensibel software with Clojure.
+
+## Usage
+
+This has only the use to show how Clojure differce from Java and where it is better (or worse).
+
+## License
+
+Copyright (C) 2010
+
+WTFPL - Do What The Fuck You Want To Public License
