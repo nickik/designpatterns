@@ -41,7 +41,7 @@
                      "Teig mit extra dicker Kruste"
                      "Tomatensoße"
                      ["Mozzarella" "Schwarze Oliven" "Spinat" "Aubergine"]))
-		name = 
+
 (defmethod BestellePizza ["München" "Krabben"] [F T]
            (getPizza "Krabben-Pizza Münchener Art"
                      "Teig mit extra dicker Kruste"
