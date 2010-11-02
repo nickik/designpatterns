@@ -1,35 +1,47 @@
-\documentclass{beamer}
-\setbeamertemplate{navigation symbols}{}
-\usepackage{beamerthemeshadow}
-\usepackage{listings}
+\documentclass[compress, red]{beamer}
+\mode<presentation>
+\usetheme{Warsaw} % Beamer Theme
+% other themes: Warsaw, AnnArbor, Antibes, Bergen, Berkeley, Berlin, Boadilla, boxes, CambridgeUS, Copenhagen, Darmstadt, default, Dresden, Frankfurt, Goettingen,
+% Hannover, Ilmenau, JuanLesPins, Luebeck, Madrid, Maloe, Marburg, Montpellier, PaloAlto, Pittsburg, Rochester, Singapore, Szeged, classic
 
+\usecolortheme{orchid} % Beamer Color Theme
+% color themes: albatross, beaver, beetle, crane, default, dolphin, dov, fly, lily, orchid, rose, seagull, seahorse, sidebartab, structure, whale, wolverine
+
+%\hypersetup{pdfpagemode=FullScreen} % makes your presentation go automatically to full screen
+
+%\useoutertheme[subsection=false]{smoothbars} % Beamer Outer Theme
+%\useinnertheme{rectangles} % Beamer Inner Theme
+
+\usepackage{listings}
 \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
 
-\lstset{ 
-language=Lisp,                  % choose the language of the code
-basicstyle=\footnotesize,       % the size of the fonts that are used for the code
-numbers=left,                   % where to put the line-numbers
-numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
-stepnumber=1,                   % the step between two line-numbers. If it's 1 each line 
-                                % will be numbered
-numbersep=5pt,                  % how far the line-numbers are from the code
-backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
-showspaces=false,               % show spaces adding particular underscores
-showstringspaces=false,         % underline spaces within strings
-showtabs=false,                 % show tabs within strings adding particular underscores
-frame=single,	                % adds a frame around the code
-tabsize=2,	                % sets default tabsize to 2 spaces
-captionpos=b,                   % sets the caption-position to bottom
-breaklines=true,                % sets automatic line breaking
-breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-title=\lstname,                 % show the filename of files included with \lstinputlisting;
+%\lstset{ 
+%language=Octave,                  % choose the language of the code
+%basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+%numbers=left,                   % where to put the line-numbers
+%numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+%stepnumber=1,                   % the step between two line-numbers. If it's 1 each line 
+                               % will be numbered
+%numbersep=5pt,                  % how far the line-numbers are from the code
+%backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+%showspaces=false,               % show spaces adding particular underscores
+%showstringspaces=false,         % underline spaces within strings
+%showtabs=false,                 % show tabs within strings adding particular underscores
+%frame=single,	                % adds a frame around the code
+%tabsize=2,	                % sets default tabsize to 2 spaces
+%captionpos=b,                   % sets the caption-position to bottom
+%breaklines=true,                % sets automatic line breaking
+%breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+%title=\lstname,                 % show the filename of files included with \lstinputlisting;
                                 % also try caption instead of title
-escapeinside={\%*}{*)},         % if you want to add a comment within your code
-morekeywords={defn, def}            % if you want to add more keywords to the set
-}
+%escapeinside={\%*}{*)},         % if you want to add a comment within your code
+%}
+
+%\setbeamercovered{dynamic}
 
 \begin{document}
 \title{Entwurfsmuster in dynamischen Sprachen}
+\subtitle{Ein vergleich von Java, Python und Clojure}
 \author{Nick Zbinden und Michael Sprecher}
 \date{\today}
 
@@ -39,45 +51,74 @@ morekeywords={defn, def}            % if you want to add more keywords to the se
 
 \begin{frame}\frametitle{Wie und Warum}
 \begin{center}
-  \begin{tabular}{l  l}
-    Wer? & Wie?\\
-    \hline
-    Sprecher, Michael & Python\\
-    Zbinden, Nick & Clojure\\
-  \end{tabular}
+  %\begin{tabular}{l  l}
+  %  Wer? & Wie?\\
+  %  \hline
+  %  Sprecher, Michael & Python\\
+  %  Zbinden, Nick & Clojure\\
+  %\end{tabular}
+  %\vspace{1cm}
 
-    Um zu zeigen wie Pattern in verschiedenen Sprachen
-    unterschiedlich implementiert und genützt werden finden wir es
-    wichtig, dass nicht nur statisch typisiert Objektorientierte
-    Sprachen angeschaut werden sondern auch dynamische oder funktionale.
+\begin{block}{Warum:}
+  Um zu zeigen, dass es noch etwas anderes gibt als statisch
+  typisierte objektorientiert Sprachen.
+\end{block}
+
+%\begin{block}{Vorlage: Java}
+%  \begin{itemize}
+%    \item limitier statisch typisiert
+%    \item classenbasiertes OO
+%    \item kaum support fÃ¼r FP
+%  \end{itemize}
+%\end{block}
+
+\begin{block}{Michael: Python}
+  \begin{itemize}
+    \item dynamisch typisiert
+    \item classenbasiertes OO
+    \item limiter support fÃ¼r FP
+  \end{itemize}
+\end{block} 
+
+\begin{block}{Nick: Clojure}
+  \begin{itemize}
+    \item dynamisch
+    \item OO durch multimethods und records
+    \item starker support fÃ¼r FP
+  \end{itemize}
+\end{block}
+
 \end{center}
 \end{frame}
 
 %Strategie Pattern
 
   %Clojure
-\begin{frame}
-  \begin{enumerate}
-  \item hash-maps anstelle von klassen \pause
-  \item funktionen als ``bürger erster klasse'' \pause
-  \end{enumerate}
-\end{frame}
 
-\begin{frame}
+\begin{frame}\frametitle{Strategie Pattern in Clojure}
   \begin{enumerate}
-  \item Strategien: anstelle von Objekte benützen wir Funktionen
+  \item Strategien: anstelle von Objekte benÃ¼tzen wir Funktionen
     \pause
-
-  \item Enten: anstelle von benützen wir hash-maps \pause
-  \item Keine Basisklasse nur Funktionen die Strategien ausführen \pause
+  \item Enten: anstelle von benÃ¼tzen wir hash-maps 
+    \pause
+  \item Keine Basisklasse nur Funktionen die Strategien ausfÃ¼hren 
+    \pause
   \end{enumerate}
 \end{frame}
 
+\begin{frame}\frametitle{Strategien = Funktionen}
+  
+\end{frame}
 
   %End Clojure
 
   %Python 
 
+%\begin{frame}\frametitle{Strategie Pattern in Python}
+%}
+
+
+%\end{frame}
 
   %End Python
 
@@ -114,16 +155,4 @@ morekeywords={defn, def}            % if you want to add more keywords to the se
   %Zusammenfassungsslide
 %End
 
-
-%Strategie MVC
-  %Clojure
-
-  %End Clojure
-
-  %Python 
-
-  %End Python
-
-  %Zusammenfassungsslide
-%End
 \end{document}

@@ -1,0 +1,927 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% beamer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To run - pdflatex filename.tex
+%	   acroread filename.pdf
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[compress,red]{beamer}
+\mode<presentation>
+
+\usetheme{Warsaw}
+% other themes: AnnArbor, Antibes, Bergen, Berkeley, Berlin, Boadilla, boxes, CambridgeUS, Copenhagen, Darmstadt, default, Dresden, Frankfurt, Goettingen,
+% Hannover, Ilmenau, JuanLesPins, Luebeck, Madrid, Maloe, Marburg, Montpellier, PaloAlto, Pittsburg, Rochester, Singapore, Szeged, classic
+
+%\usecolortheme{lily}
+% color themes: albatross, beaver, beetle, crane, default, dolphin, dov, fly, lily, orchid, rose, seagull, seahorse, sidebartab, structure, whale, wolverine
+
+%\usefonttheme{serif}
+% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
+
+\hypersetup{pdfpagemode=FullScreen} % makes your presentation go automatically to full screen
+
+% define your own colors:
+\definecolor{Red}{rgb}{1,0,0}
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{Green}{rgb}{0,1,0}
+\definecolor{magenta}{rgb}{1,0,.6}
+\definecolor{lightblue}{rgb}{0,.5,1}
+\definecolor{lightpurple}{rgb}{.6,.4,1}
+\definecolor{gold}{rgb}{.6,.5,0}
+\definecolor{orange}{rgb}{1,0.4,0}
+\definecolor{hotpink}{rgb}{1,0,0.5}
+\definecolor{newcolor2}{rgb}{.5,.3,.5}
+\definecolor{newcolor}{rgb}{0,.3,1}
+\definecolor{newcolor3}{rgb}{1,0,.35}
+\definecolor{darkgreen1}{rgb}{0, .35, 0}
+\definecolor{darkgreen}{rgb}{0, .6, 0}
+\definecolor{darkred}{rgb}{.75,0,0}
+
+\xdefinecolor{olive}{cmyk}{0.64,0,0.95,0.4}
+\xdefinecolor{purpleish}{cmyk}{0.75,0.75,0,0}
+
+% can also choose different themes for the "inside" and "outside"
+
+% \usepackage{beamerinnertheme_______}
+% inner themes include circles, default, inmargin, rectangles, rounded
+
+% \usepackage{beamerouterthemesmoothbars}
+% outer themes include default, infolines, miniframes, shadow, sidebar, smoothbars, smoothtree, split, tree
+
+\useoutertheme[subsection=false]{smoothbars}
+
+% to have the same footer on all slides
+%\setbeamertemplate{footline}[text line]{STUFF HERE!}
+\setbeamertemplate{footline}[text line]{} % makes the footer EMPTY
+
+% include packages
+\usepackage{subfigure}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage[all,knot]{xy}
+\xyoption{arc}
+\usepackage{url}
+\usepackage{multimedia}
+\usepackage{hyperref}
+     
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title Page Info %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Presentations Using \LaTeX}
+\subtitle{The Beamer Class}
+\author{Amber M. Smith}
+\institute{Department of Mathematics\\ University of Utah \\ \vspace{.25cm}GSAC Colloquium}
+\date{September 4, 2007}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Begin Your Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{
+	\titlepage 
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section[Outline]{}	% this puts the outline before EACH section automatically & will highlight the section you're about to talk about
+%\frame{\tableofcontents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\subsection{Beamer Intro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{}
+\begin{center}
+\begin{block}<+->{Disclaimer \#1}
+	\vspace{.1cm}
+	\begin{center} \large
+	I am \textcolor{darkgreen}{NOT} an expert in \LaTeX\\ \vspace{.1cm}
+	I am \textcolor{darkgreen}{NOT} an expert in Beamer\\
+	\end{center}
+\end{block}
+\vspace{1cm}
+\begin{block}{Disclaimer \#2}
+	\vspace{.1cm}
+	This talk is designed to \textcolor{darkgreen}{introduce} you to presentations in \LaTeX\\ \vspace{.1cm}
+	\begin{center}
+	$\dots$ and showcase cool features of Beamer\\
+	\end{center}
+\end{block}
+\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Why Use \LaTeX \hspace{.05cm} for Presentations (and everything else)?}
+\vspace{-.5cm}
+\footnotesize
+\center
+\textsc{\textcolor{Blue}{Because Microsoft SUCKS!}}\\
+\scriptsize
+\flushleft
+$\dots\dots$ especially for mathematics $\dots\dots$
+\begin{columns}[t]
+\column{.35\textwidth}
+\begin{eqnarray*}
+	\frac{\partial^2 u}{\partial t^2} &=& c^2 \nabla^2u\\
+	\int\limits_{0}^{\infty} e^{-x}&=& 1
+\end{eqnarray*}
+\column{.65\textwidth}
+\begin{eqnarray*}
+	f(x) &=&a_o+\sum\limits_{n=1}^{\infty}\left[a_n \cos\left(\frac{n\pi x}{L}\right)+b_n\sin \left(\frac{n \pi x}{L}\right)\right]\\
+        \Psi(x)&=&\left\{
+        \begin{array}{ccr}
+		1 & \mbox{if}& x<0\\
+                \frac{x^2}{4} & \mbox{if}& x\ge 0
+        \end{array} \right.
+\end{eqnarray*}
+\end{columns}
+					% XY Diagram
+\begin{columns}[t]
+\column{.5\textwidth}
+\xymatrix{
+U\ar@/_/[ddr]_y \ar@/^/[drr]^x
+ \ar@{.>}[dr]|-{(x,y)}    \\
+ & X \times_Z Y \ar[d]^q \ar[r]_p
+ & X \ar[d]_f \\
+ & Y \ar[r]^g &Z
+ }
+\column{.5\textwidth}
+\[ \xy					% XY Diagram
+(6,9)*{}="1";
+(-8.5,-1)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.} (0,30)}?(.75)*\dir{>}+(-2,2)*{z};
+(-6.5,8)*{}="1";
+(-.5,-9)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.} (-28.5,9.3)}?(.7)*\dir{>}+(-2,-2)*{u};
+(-9.5,-3.35)*{}="1";
+(8.5,-3)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.} (-17.67,-24.19)}?(.7)*\dir{>}+(-1,-3)*{x};
+(1,-10)*{}="1";
+(6.5,7.13)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.} (17.67,-24.19)}?(.7)*\dir{>}+(3,-1)*{y};
+(11,-1)*{}="1";
+(-4,8)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.} (28.5,9.3)}?(.93)*\dir{>}+(1,2)*{w};
+\endxy \]
+\end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{For the Pure Mathematicians$\dots$}
+\vspace{-.5cm}
+\begin{center}
+\LaTeX  \hspace{.05cm}can \textcolor{Blue}{DRAW} cool diagrams!
+\end{center}
+\begin{columns}[t]
+\column{0.35\textwidth}
+\xy 				%FIG.5. Describin a cobordism using Moorse Theory (BIG)
+(0,10)*\ellipse(3,1){-};
+(0,-12)*\ellipse(3,1)__,=:a(-180){-};
+(0,-12)*\ellipse(3,1){.};
+(0,7.5)*\ellipse(3,1){.};
+(0,7.5)*\ellipse(3,1)__,=:a(-180){-};
+(-3,0)*\ellipse(3,1){.};
+(3,0)*\ellipse(3,1){.};
+(-3,0)*\ellipse(3,1)__,=:a(-180){-};
+(3,0)*\ellipse(3,1)__,=:a(-180){-};
+(0,-6.5)*\ellipse(3,1){.};
+(0,-6.5)*\ellipse(3,1)__,=:a(-180){-};
+(-3,0)*{}="1";
+(3,0)*{}="2";
+(-9,0)*{}="xA2";
+(9,0)*{}="xB2";
+"1";"2" **\crv{(-3,5) & (3,5)};
+(-3,15)*{}="xA";
+(3,15)*{}="xB";
+(-3,9)*{}="xA1";
+(3,9)*{}="xB1";
+"xA";"xA1" **\dir{-};
+"xB";"xB1" **\dir{-};
+"xB1";"xB2" **\crv{(8,7)};
+"xA1";"xA2" **\crv{(-8,7)};
+(-3,0)*{}="1";
+(3,0)*{}="2";
+(-9,0)*{}="A2";
+(9,0)*{}="B2";
+"1";"2" **\crv{(-3,-5) & (3,-5)};
+(-3,-13)*{}="A";
+(3,-13)*{}="B";
+(-3,-9)*{}="A1";
+(3,-9)*{}="B1";
+"A";"A1" **\dir{-};
+"B";"B1" **\dir{-};
+"B1";"B2" **\crv{(8,-7)};
+"A1";"A2" **\crv{(-8,-7)};
+
+%TUBE TIP*********************
+
+(-3,20)*{}="f1";
+(-3,-19.5)*{}="f2";
+(3,20)*{}="f3";
+(3,-19.5)*{}="f4";
+(-3,-24)*{}="xf2";
+(3,-24)*{}="xf4";
+"f2";"xf2" **\dir{-};
+"f4";"xf4" **\dir{-};
+"f1";"xA" **\dir{-};
+"f3";"xB" **\dir{-};
+"f2";"A" **\dir{-}; 	%ADJUST HERE IF PLANES ARE NOT TRANSPERANT
+"f4";"B" **\dir{-};
+
+%End tube tips***************
+
+(0,-8)*{}="A"; 		%START OF SLICES
+(18,0)*{}="B";
+(0,8)*{}="G";
+(-18,0)*{}="Y";
+(-8,4.5)*{}="L";
+(8,4.5)*{}="R";
+"A";"B" **\dir{-};
+"Y";"L" **\dir{-};
+"Y";"A" **\dir{-};
+"R";"B" **\dir{-};
+
+%New SLICE
+
+(0,7)*{}="A"; 		%START OF SLICES
+(18,15)*{}="B";
+(0,23)*{}="G";
+(-18,15)*{}="Y";
+"A";"B" **\dir{-};
+"Y";"G" **\dir{-};
+"Y";"A" **\dir{-};
+"B";"G" **\dir{-};
+(0,-21)*{}="A"; 	%START OF SLICES
+(18,-13)*{}="B";
+(0,-5)*{}="G";
+(-18,-13)*{}="Y";
+(6,-8)*{}="R";
+(-6,-8)*{}="L";
+"A";"B" **\dir{-};
+"Y";"L" **\dir{-};
+"Y";"A" **\dir{-};
+"R";"B" **\dir{-};
+\endxy			% End XY pic
+\hfill
+\column{0.3\textwidth}
+\[
+\xy				% XY Diagram
+(-5,0)*{f};
+(-5,12)*{}; (-5,0)*\xycircle(2.65,2.65){-}="1_x"; **\dir{-}
+?(.5)*\dir{<}+(3,0)*{\scriptstyle x}; "1_x";(-5,-12)*{}; **\dir{-}
+?(.4)*\dir{<}+(3,0)*{\scriptstyle y}; (5,12)*{};
+(5,0)*\xycircle(2.65,2.65){-}="1_x"; **\dir{-}
+?(.5)*\dir{<}+(3,0)*{\scriptstyle x'}; "1_x";(5,-12)*{}; **\dir{-}
+?(.4)*\dir{<}+(3,0)*{\scriptstyle y'}; (5,0)*{g};
+\endxy
+\]
+\hfill
+\column{0.35\textwidth}
+\xy 0;/r.20pc/:			% XY Diagram
+(-6,9)*{}="1";
+(8.5,-1)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.}(0,30)};
+(6.5,8)*{}="1";
+(.5,-9)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.}(28.5,9.3)}\POS?(.9)*+{\hole}="d"\POS?(.65)*{\hole}="e";
+(9.5,-3.35)*{}="1";
+(-8.5,-3)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.}(17.67,-24.19)}\POS?(.9)*+{\hole}="b" \POS?(.7)*{\hole}="c";
+(-1,-10)*{}="1";
+(-6.5,7.13)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.}(-17.67,-24.19)};
+(-11,-1)*{}="1";
+(4,8)*{}="2";
+"1";"2" **\crv{~*=<.5pt>{.}(-28.5,9.3)}\POS?(.12)*+{\hole}="a";
+(-20,-40)*{};"a" **\crv{~*=<2pt>{.} (-5,-35) & (-20,-5)};
+"a";"b" **\crv{~*=<2pt>{.} (-10,5) & (0,2)};
+"b";"c" **\crv{~*=<2pt>{.} (-10,-15) & (3,-20)};
+"c";"d" **\crv{~*=<2pt>{.} (6,-10)};
+"d";"e" **\crv{~*=<2pt>{.} (3,7) & (11,7)};
+"e";(-10,-44) **\crv{~*=<2pt>{.} (30,-30) & (-11,-25)};
+\endxy
+\end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Why Use the \textit{Beamer} Class?}
+\vspace{-.5cm}
+\footnotesize
+\underline{\textsc{Pros}}
+\begin{enumerate}\scriptsize
+	\item More bells \& whistles than the \textit{Prosper} class	    
+	\item Directly supported by \textcolor{darkgreen}{\textbf{pdflatex}} 
+	\begin{itemize}\scriptsize
+		\item can still use latex2e, dvips, ps2pdf (\underline{HAVE} to when using \textit{\textcolor{darkgreen}{\textbf{pstricks}}})
+	\end{itemize}
+	\item Rich overlay \& transition effects
+	\item Navigational bars \& symbols
+	\item Outputs: screen, handouts, notes, etc.
+	\item Customizable \\
+\end{enumerate}
+\vspace{.5cm}
+\underline{\textsc{Cons}}
+\begin{enumerate}\scriptsize
+	\item Isn't ``what you see is what you get''
+\end{enumerate}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Code}
+\subsection{Basic Code}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Basic Code}
+\vspace{-.5cm}
+\scriptsize
+\begin{itemize}
+\item Beamer class loading with themes\\
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$documentclass\{\textcolor{Blue}{beamer}\}}&\\
+	$\backslash$\texttt{mode<presentation>}&\\
+	$\backslash$\texttt{usetheme}\{\textcolor{Blue}{\texttt{Warsaw}}\}      &    \texttt{\% Beamer Theme}\\
+	$\backslash$\texttt{usecolortheme}\{\textcolor{Blue}{\texttt{lily}}\}    &   \texttt{\% Beamer Color Theme}\\
+	&\\\hline 
+	\end{tabular}
+\vspace{.75cm}
+\item \scriptsize Title Page \\
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	$\backslash$\texttt{title}\{\} &\\
+	$\backslash$\texttt{subtitle}\{\} &\\
+	$\backslash$\texttt{author}\{\}&\\
+	$\backslash$\texttt{institute}\{\}&\\
+	$\backslash$\texttt{date}\{\}&\\
+	&\\
+	$\backslash$\texttt{begin}\{\texttt{document}\}&\\
+	$\backslash$\texttt{frame}\{ & \texttt{\% the title page}\\
+	\hspace{.35cm}$\backslash$\textcolor{Blue}{\texttt{titlepage}}&\\
+         \}&\\
+	$\vdots$&\\
+	$\backslash$\texttt{end}\{\texttt{document}\}&\\
+	&\\\hline
+	\end{tabular}	
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{More Code}
+\vspace{-.5cm}
+\begin{itemize}
+\item \scriptsize Slides\\ \tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	$\backslash$\texttt{section}\{\} & \\
+	$\backslash$\texttt{subsection}\{\} &\\
+	$\backslash$\textcolor{Blue}{\texttt{frame}}[\textit{\texttt{options}}]\{ &\\
+	$\backslash$\textcolor{Blue}{\texttt{frametitle}}\{\} &\\
+	\hspace{.35cm}$\dots$\textit{\texttt{slide contents}}$\dots$ & \\
+	\} &\\ 
+	&\\\hline
+	\end{tabular}
+\vspace{.75cm}
+\item \scriptsize Many features you want to use require you to load packages, such as:\\ \tiny
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$usepackage}\{\textcolor{Blue}{amsmath}\}      &    \texttt{\% for math AMS fonts}\\
+	\texttt{$\backslash$usepackage}\{\textcolor{Blue}{graphicx}\}      &    \texttt{\% to include figures}\\
+\texttt{$\backslash$usepackage}\{\textcolor{Blue}{subfigure}\}      &    \texttt{\% to have figures in figures}\\
+\texttt{$\backslash$usepackage}\{\textcolor{Blue}{multimedia}\}      &    \texttt{\% to include movies}\\
+&\\\hline 
+\end{tabular}
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Layout}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Themes}
+\footnotesize
+\underline{\textsc{Five Theme Categories}}
+\begin{enumerate}\scriptsize
+	\item \textcolor{darkgreen}{\textbf{Presentation}} (\textit{the slide template})
+	\item \textcolor{darkgreen}{\textbf{Color}}$^*$ (\textit{color scheme for slide template})
+	\item \textcolor{darkgreen}{\textbf{Font}}$^*$  
+	\item \textcolor{darkgreen}{\textbf{Inner}}$^*$ (how you want bullets, boxes, etc. to look)
+	\item \textcolor{darkgreen}{\textbf{Outer}}$^*$ (how you want the top/bottom of frames to look)\\
+\end{enumerate}
+\vspace{.25cm}
+\textbf{$^*$ if you don't like the default of the Presentation Theme}\\
+\vspace{.5cm}
+\underline{\textsc{Example}}\\
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$documentclass[compress, red]\{\textcolor{Blue}{beamer}\}}&\\
+	\texttt{$\backslash$usetheme}\{\textcolor{Blue}{Warsaw}\}      &    \texttt{\% Beamer Theme}\\
+	\texttt{$\backslash$usecolortheme}\{\textcolor{Blue}{lily}\}    &   \texttt{\% Beamer Color Theme}\\
+	\texttt{$\backslash$useoutertheme[\textcolor{Blue}{subsection=false}]\{\textcolor{Blue}{smoothbars}\}}& \texttt{\% Beamer Outer Theme}\\
+	\texttt{$\backslash$useinnertheme\{\textcolor{Blue}{rectangles}\}}&\texttt{\% Beamer Inner Theme}\\
+	&\\\hline 
+	\end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Beamer \textit{Options} Examples}
+\begin{itemize}
+	\item \texttt{[\textcolor{darkgreen}{\textbf{compress}}]}: makes all navigation bars as small as possible\\
+	\textsc{default}: uncompressed\\\vspace{.25cm}
+	
+	\item  \texttt{[\textcolor{Red}{\textbf{red}}]}: changes color scheme to red\\
+	\textsc{default} for beamer theme Warsaw: blue\\\vspace{.25cm}
+	
+	\item  \texttt{[\textcolor{brown}{\textbf{subsection=false}}]}: removes an extra bar above slide title stating the subsection title\\
+	\textsc{default}: true
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Using Color}
+\footnotesize
+\colorlet{newred}{red!60!black}
+\vspace{-1cm}
+\begin{center}
+ * \hspace{.2cm} \textsc{\textcolor{Blue}{Beamer automatically loads}} \textbf{`xcolor'} \hspace{.2cm} *\\
+\end{center}
+\begin{itemize} \footnotesize
+	\item \underline{Predefined colors}:\\ \vspace{.2cm} 
+		\textcolor{red}{red}, \textcolor{blue}{blue}, \textcolor{green}{green}, \textcolor{cyan}{cyan}, \textcolor{magenta}{magenta},
+		\textcolor{yellow}{yellow}, \textcolor{black}{black}, \textcolor{darkgray}{darkgray}, \textcolor{gray}{gray},
+		\textcolor{lightgray}{lightgray}, \textcolor{orange}{orange}, \textcolor{violet}{violet}, \textcolor{purple}{purple}, \&
+		\textcolor{brown}{brown}\\ \vspace{.25cm}
+	\item \underline{To define new colors}:\\ \vspace{.2cm} \scriptsize
+	\texttt{$\backslash$xdefinecolor\{darkgreen\}\{rgb\}\{0,0.35,0\}}: \textcolor{darkgreen1}{my new color is dark green}\\ \vspace{.15cm}
+	\texttt{$\backslash$xdefinecolor\{purpleish\}\{cmyk\}\{0.75,0.75,0,0\}}: \textcolor{purpleish}{color is purple-ish}\\ \vspace{.25cm}
+	
+	\item \footnotesize \underline{Or substitute colors}:\\ \vspace{.2cm} \scriptsize
+	\texttt{$\backslash$colorlet\{newred\}\{red!60!black\}}: \textcolor{newred}{my new color is dark red}
+	
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Beamer Features %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Beamer Features}
+\subsection{Cool Stuff}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Overlays}
+\vspace{-.5cm}
+\footnotesize
+There are multiple ways to do overlays:
+\begin{enumerate}
+	\item \texttt{$\backslash$\textcolor{Blue}{pause}}\\ \vspace{.1cm}
+			does the overlay sequentially \\ \vspace{.25cm}
+\end{enumerate}
+
+\underline{\textsc{Example}}\\
+\pause
+\begin{columns}
+\column{0.4\textwidth}
+\scriptsize
+\begin{itemize}
+\item I'm 
+	\item showing\pause
+	\item you
+	\item \textit{pause}\pause
+\end{itemize}
+\hfill
+\column{0.6\textwidth}
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$begin\{itemize\}}&\\
+	    \hspace{.25cm}     \texttt{$\backslash$item I'm} &\\
+	    \hspace{.25cm}	\texttt{$\backslash$item showing $\backslash$\textcolor{Blue}{pause}}&\\
+	    \hspace{.25cm}	\texttt{$\backslash$item you }&\\
+	    \hspace{.25cm}	\texttt{$\backslash$item $\backslash$textit\{pause\} $\backslash$\textcolor{Blue}{pause}}&\\
+	\texttt{$\backslash$end\{itemize\}}&\\
+	&\\\hline 
+	\end{tabular}
+\end{columns}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Overlays}
+\vspace{-.5cm}
+\footnotesize
+There are multiple ways to do overlays:
+
+\begin{enumerate}\footnotesize
+	\item \scriptsize \texttt{$\backslash$\textcolor{Blue}{pause}}\\ \vspace{.1cm}
+	\item  \footnotesize \texttt{$\backslash$\textcolor{Blue}{item$<$n-$>$}} (means ``from overlay n'')\\ \vspace{.1cm}
+	  \texttt{$\backslash$item$<$2$>$} (means ``only overlay 2'')\\ \vspace{.1cm}
+	    \texttt{$\backslash$item$<$2,4$>$} (means ``only overlay 2 \& 4'')\\ \vspace{.1cm}
+	does non-sequential overlays in the bullet-type (ie. \textcolor{darkgreen}{\texttt{itemize}}),  environments\\ \vspace{.25cm}
+\end{enumerate}
+\onslide<1->
+\underline{\textsc{Example}}\\
+
+\scriptsize
+\begin{columns}
+\column{0.4\textwidth}
+\begin{itemize}
+	\item<1> I'm 
+	\item<1,2,3-> showing
+	\item<2> you
+	\item <3->\textit{$\backslash$item$<>$}
+\end{itemize}
+\hfill
+\column{0.6\textwidth}
+\onslide<4->
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$begin\{itemize\}}&\\
+	    \hspace{.25cm}      \texttt{$\backslash$item\textcolor{Blue}{$<$1$>$} I'm} &\\
+	    \hspace{.25cm}	\texttt{$\backslash$item\textcolor{Blue}{$<$1,2,3-$>$} showing}&\\
+	    \hspace{.25cm}	\texttt{$\backslash$item\textcolor{Blue}{$<$2$>$} you}&\\
+	    \hspace{.25cm}	\texttt{$\backslash$item\textcolor{Blue}{$<$3-$>$} $\backslash$textit\{\$$\backslash$backslash\$ item\$$<>$\$\}}&\\
+	\texttt{$\backslash$end\{itemize\}}&\\
+	&\\\hline 
+	\end{tabular}
+\end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Overlays}
+\vspace{-.5cm}
+\footnotesize
+There are multiple ways to do overlays:
+
+\begin{enumerate}\footnotesize
+	\item \scriptsize \texttt{$\backslash$\textcolor{Blue}{pause}}\\ \vspace{.1cm}	
+	\item \scriptsize \texttt{$\backslash$\textcolor{Blue}{item}$<$n-$>$}\\ \vspace{.1cm}	
+	\item \footnotesize\texttt{$\backslash$\textcolor{Blue}{onslide}$<$n-$>$}\\ \vspace{.1cm}	
+	 non-sequential overlays in any environment! \\ \vspace{.1cm}	
+\end{enumerate}
+
+\underline{\textsc{Example}}\\
+
+\scriptsize
+\begin{columns}
+\column{0.35\textwidth}
+\begin{itemize}
+	\item I'm \onslide<2>showing 
+	\item \onslide<3-> showing \onslide<3>you
+	\item \onslide<4->you
+	\item \textit{$\backslash$onslide$<>$}
+\end{itemize}
+\hfill
+\column{0.65\textwidth}
+\onslide<5->
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$begin\{itemize\}}&\\
+	    \hspace{.25cm}     \texttt{$\backslash$item I'm \textcolor{Blue}{$\backslash$onslide$<$2$>$} showing} &\\
+	    \hspace{.25cm}	\texttt{$\backslash$item \textcolor{Blue}{$\backslash$onslide$<$3-$>$} showing \textcolor{Blue}{$\backslash$onslide$<$3$>$} you}&\\
+	    \hspace{.25cm}	\texttt{$\backslash$item \textcolor{Blue}{$\backslash$onslide$<$4-$>$} you}&\\
+	    \hspace{.25cm}	\texttt{$\backslash$item $\backslash$textit\{\$$\backslash$backslash\$ onslide\$$<>$\$\}}&\\
+	\texttt{$\backslash$end\{itemize\}}&\\
+	&\\\hline 
+	\end{tabular}
+\end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Overlays}
+\vspace{-.5cm}
+\footnotesize
+There are multiple ways to do overlays:
+
+\begin{enumerate}\footnotesize
+	\item \texttt{$\backslash$\textcolor{Blue}{pause}}\\ \vspace{.1cm}	
+	\item  \texttt{$\backslash$\textcolor{Blue}{item}$<$n-$>$}\\ \vspace{.1cm}	
+	\item \texttt{$\backslash$\textcolor{Blue}{onslide}$<$n-$>$}\\ \vspace{.1cm}
+	\item Replace
+	\begin{itemize}\scriptsize
+		\item \texttt{$\backslash$\textcolor{Blue}{only}$<$n$>$\{$\dots$\}}: successive
+		\item \texttt{$\backslash$\textcolor{Blue}{uncover}$<$n$>$\{$\dots$\}}: shows at n
+		\item \texttt{$\backslash$\textcolor{Blue}{invisible}$<$n$>$\{$\dots$\}}: hides at n
+		\item \texttt{$\backslash$\textcolor{Blue}{alt}$<$n$>$\{at n\}\{not at n\}}: 2 alternatives
+		\item \texttt{$\backslash$\textcolor{Blue}{temporal}$<$n$>$\{before\}\{at n\}\{after\}}: 3 alternatives
+		\item \texttt{\textcolor{darkgreen}{overprint}} \& \texttt{\textcolor{darkgreen}{overlayarea}} environments
+	\end{itemize}
+	\item Highlighting
+	\begin{itemize}\scriptsize
+		\item<+-|alert@+> \texttt{$\backslash$item$<$+-|\textcolor{Blue}{alert}\@+$>$}
+		\item<+-|alert@+> \texttt{$\backslash$item$<$2-$>$$\backslash$\textcolor{Blue}{alert}$<$n$>$\{stuff\}}
+		\item<+-|alert@+> \texttt{$\backslash$item$<$2-$>$$\backslash$\textcolor{Blue}{alt}$<$3$>$\{$\backslash$color\{green\} stuff\}\{$\backslash$color\{red\} stuff\}}
+		\item[]<+-|alert@+>
+	\end{itemize} 
+\end{enumerate}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Transition Effects}
+\footnotesize
+\vspace{-.5cm}
+\setbeamercovered{transparent}
+\begin{center}
+	*\hspace{.15cm}\textsc{This slide uses transparent overlays:}\hspace{.15cm}* \texttt{$\backslash$\textcolor{Blue}{setbeamercovered}\{transparent\}}\\\vspace{.25cm}
+\end{center}
+\onslide<1->
+\underline{Text Animation:}
+\onslide<2->
+\begin{itemize}
+	\item \texttt{$\backslash$\textcolor{Blue}{animate}}, \texttt{$\backslash$\textcolor{Blue}{animatevalue}}, etc.
+	\item can do timed overlays, etc.\\\vspace{.2cm}
+\end{itemize}
+\onslide<1->
+\underline{Slide Transitions:}\\
+\onslide<3->
+\begin{itemize}\scriptsize
+	\item Seven options: Blinds, Box, Dissolve, Glitter, Replace, Split, Wipe\\\vspace{.15cm}
+	\textsc{Examples}
+	\begin{itemize} \scriptsize
+		\item Dissolve:\texttt{$\backslash$\color{Blue}transdissolve}
+		\item Glitter: \texttt{$\backslash$\color{Blue}transglitter[direction=90]}
+		\item Split (2 vertical lines sweep outward): \texttt{$\backslash$\color{Blue}transsplitverticalout}
+	\end{itemize}
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Figures}
+\transdissolve
+\begin{itemize}
+	\item Standard \LaTeX  \hspace{.05cm} \texttt{\textcolor{darkgreen} {figure}} environment can be used.\\\vspace{.1cm}
+	\item Using the \textbf{`graphicx'} package:\\
+	\begin{itemize}
+		\item doesn't support all figures types: \\ \vspace{.25cm}
+		easy fix: make ALL figures pdfs \\(eg. convert eps using \textcolor{darkgreen}{`epstopdf'}) \\ \vspace{.15cm}
+		\vspace{.1cm}
+	\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$begin\{figure\}} &\\
+	\hspace{.25cm} \texttt{$\backslash$\textcolor{Blue}{includegraphics}[width=$\backslash$columnwidth]\{myprettyfigure\}} &\\
+	\texttt{$\backslash$end\{figure\}} &\\
+	&\\\hline 
+	\end{tabular}
+	\end{itemize}\vspace{.1cm}
+	
+\item can also use \texttt{$\backslash$\textcolor{Blue} {pgfimage}}\\
+	\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$\textcolor{Blue}{pgfimage}[height=4cm]\{myprettyfigure\}} &\\
+	&\\\hline 
+	\end{tabular}
+\end{itemize}
+\footnotesize
+\begin{center}
+*  \hspace{.25cm} \textbf{NOTICE that you don't have to specify the file type} \hspace{.25cm} *
+\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Figures - Zooming}
+\vspace{-.5cm}
+\footnotesize
+\begin{itemize}\scriptsize
+	\item You can zoom into portions of your figures\\\vspace{.1cm}
+	\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$\textcolor{Blue}{framezoom}$<1>$$<2>$[border](0cm, 3.5cm)(2.75cm, 1cm)} &\\
+	\texttt{$\backslash$\textcolor{Blue}{framezoom}$<1>$$<3>$[border](3cm, 3.5cm)(1cm, 1cm)} &\\
+	\texttt{$\backslash$pgfimage[height=4cm]\{ambersmice\}} &\\
+	&\\\hline 
+	\end{tabular}
+\end{itemize}
+\framezoom<1><2>[border](0cm,3.5cm)(2.75cm, 1cm)
+\framezoom<1><3>[border](3cm,3.5cm)(1cm, 1cm)
+\pgfimage[height=4cm]{ambersmice}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Movies}
+\vspace{-.5cm}
+\scriptsize
+\begin{center}
+	\movie[height=1.125in,width=1.5in,poster]{}{Chemotaxis.mov}
+\end{center}
+
+	\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$usepackage\{\textcolor{Blue}{multimedia}\}} &\\
+	$\vdots$ &\\
+	\texttt{$\backslash$frame\{} &\\
+	\hspace{.25cm}\texttt{$\backslash$\textcolor{Blue}{movie}[height=1.125in,width=1.5in,poster]\{\}\{Chemotaxis.mov\}} &\\
+	\} &\\
+	&\\\hline 
+	\end{tabular}
+\scriptsize
+\vspace{.15cm}
+\begin{itemize}\scriptsize
+	\item[*] \tiny \texttt{$\backslash$\textcolor{Blue}{movie}[\textit{options}]\{\textit{text, picture, etc to click on}\}\{\textit{name of movie}\}}
+	\item[*] \scriptsize Should support all major movie types: \textcolor{darkgreen}{.avi}, \textcolor{darkgreen}{.mov}, etc.\\\vspace{.1cm}
+	\textbf{Problems: make sure Acrobat has the correct plug-ins!!! \\
+	Does NOT work on Linux/Unix systems?!?!}\\
+	\item[*] You may need to use the \texttt{\textcolor{darkgreen}{externalviewer}} option
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Using Columns}
+\vspace{-.5cm}
+\footnotesize
+The \texttt{\textcolor{darkgreen}{column}} environment is \textbf{extremely useful}!\\\vspace{.1cm}
+\begin{itemize}
+	\item allows you to add as many columns as you want\\\vspace{.1cm}
+	\item can put multiple column environments on any page\\ \vspace{.2cm}
+\tiny
+\begin{tabular}{|ll|}
+\hline
+&\\
+\texttt{$\backslash$begin\{columns\}[t]} &\\
+\hspace{.25cm}\texttt{$\backslash$\textcolor{Blue}{column}\{0.25$\backslash$textwidth\}} &\\
+\hspace{.5cm} $\dots$ \textit{contents} $\dots$ &\\
+\hspace{.25cm}\texttt{$\backslash$\textcolor{Blue}{column}\{0.5$\backslash$textwidth\}} &\\
+\hspace{.5cm} $\dots$ \textit{contents} $\dots$ &\\
+\hspace{.25cm}\texttt{$\backslash$\textcolor{Blue}{column}\{0.25$\backslash$textwidth\}} &\\
+\hspace{.5cm} $\dots$ \textit{contents} $\dots$ &\\
+\texttt{$\backslash$end\{columns\}} &\\
+&\\\hline 
+\end{tabular}
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{Theorems, etc.}
+\scriptsize
+The \texttt{\textcolor{darkgreen}{theorem}} , \texttt{\textcolor{darkgreen}{proof}} , \texttt{\textcolor{darkgreen}{block}}, \texttt{\textcolor{darkgreen}{example}}, \texttt{\textcolor{darkgreen}{definition}}, etc. environments:
+\begin{itemize}
+	\item For theorems/proofs\\
+	\begin{theorem}\label{theorem1}
+		Write your fantastic \\
+		theorem here $\dots$
+	\end{theorem}
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$begin\{\textcolor{Blue}{theorem}\}} &\\
+	\hspace{.25cm}Write your fantastic $\backslash$$\backslash$&\\
+	\hspace{.25cm}theorem here \$$\backslash$dots\$&\\
+	\texttt{$\backslash$end\{\textcolor{Blue}{theorem}\}} &\\
+	&\\\hline 
+	\end{tabular}
+\vspace{0.5cm}
+	\item \scriptsize Or to highlight points:\\
+	\begin{block}{Summary}
+		\begin{itemize}
+			\item Beamer is cool!
+		\end{itemize}
+	\end{block}
+\end{itemize}
+
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$begin\{\textcolor{Blue}{block}\}\{Summary\}} &\\
+	\hspace{.25cm}$\backslash$begin\{itemize\} &\\
+	\hspace{.25cm}$\backslash$item Beamer is cool! &\\
+	\hspace{.25cm}$\backslash$end\{itemize\} &\\
+	\texttt{$\backslash$end\{\textcolor{Blue}{block}\}} &\\
+	&\\\hline 
+	\end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{More \LaTeX}
+\subsection{Ahh..sweet}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame[label=MyVerbatim]{\frametitle{Fragile Environments \& Hyperlinks}
+\vspace{-.4cm}
+\footnotesize
+\underline{Fragile Environments}\\\vspace{.1cm}
+You \underline{CANNOT} use \texttt{\textcolor{darkgreen}{verbatim}} without specifying it in the frame \textit{options}:\\ \vspace{.2cm}
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$frame[\textcolor{Blue}{containsverbatim}]\{ $\backslash$frametitle\{\} } &\\
+	\hspace{.25cm}\texttt{$\backslash$begin\{verbatim\}} &\\
+	\hspace{.5cm} $\dots$ \textit{contents} $\dots$&\\
+	\hspace{.25cm}\texttt{$\backslash$end\{verbatim\}} &\\
+	\} &\\
+	&\\\hline 
+	\end{tabular}
+\newline
+\newline
+\footnotesize
+\onslide<2->
+\underline{Hyperlinks \& Buttons:} \\ \vspace{.1cm}
+You can create \textcolor{darkgreen}{buttons} to jump around your talk:
+	\hyperlink{theorem1}{\beamergotobutton{Jump to Theorem \#1}}
+	\hypertarget{theorem1}{}
+\vspace{.15cm}
+\begin{itemize}
+	\item You need to put a \textcolor{darkgreen}{label} on the slide: \scriptsize\texttt{$\backslash$frame[label=MyVerbatim]\{}\\
+	OR, \texttt{$\backslash$label\{theorem1\}} \\\vspace{.1cm}
+	\item \footnotesize To create the button:\\\vspace{.1cm}
+\tiny
+	\begin{tabular}{|ll|}
+	\hline
+	&\\
+	\texttt{$\backslash$usepackage\{\textcolor{Blue}{hyperref}\}} &\\
+	\texttt{$\backslash$frame\{} &\\
+	\texttt{$\backslash$\textcolor{Blue}{hyperlink}\{theorem1\}\{$\backslash$\textcolor{Blue}{beamergotobutton}\{Jump to Theorem $\backslash$\#1\}\}} &\\
+	\texttt{$\backslash$\textcolor{Blue}{hypertarget}\{theorem1\}\{\}} &\\
+	\}&\\
+	&\\\hline 
+	\end{tabular}
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\frametitle{And, Finally $\dots$} 
+\underline{\textsc{Other useful things:}}\\
+\footnotesize
+\begin{itemize}
+	\item Drawing diagrams\\
+	\begin{itemize}\footnotesize
+		\item[*] \textcolor{darkgreen}{xypic}: draws the diagrams I showed at beginning\\\vspace{.2cm}
+		\item[*] the \LaTeX  \hspace{.05cm} \texttt{\textcolor{darkgreen}{picture}} environment \\\vspace{.2cm}
+		\item[*] \texttt{\textcolor{darkgreen}{pstricks}}: can't use \textbf{pdflatex} with this\\ \vspace{.2cm}
+	\end{itemize}
+\item Logo in the footer:\\
+\begin{itemize}
+	\item[*] put \texttt{$\backslash$\textcolor{Blue}{logo}\{name\}} in preamble\\\vspace{.2cm}
+	\item[*] puts logo in bottom right corner\\ \vspace{.2cm}
+\end{itemize}
+\item References\\
+\begin{itemize}
+	\item[*] Beamer Users Guide:\\
+	 \tiny \url{www.ctan.org/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf}\\ \vspace{.2cm}\footnotesize
+	 \item[*] \footnotesize Google: if you think Beamer should be able to do it, Google it.
+\end{itemize}
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% End Your Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
