@@ -13,9 +13,8 @@
 		temperature "F degrees and "
 		humidity "% humidity")))
 
-;; Als letztes fÃhge ich einfach die funktion zu den daten.
+;; Als letztes faehge ich einfach die funktion zu den daten.
 (add-watch  WeatherData :CCDDisplay CCDDisplay)
-
 
 ;;StatistikAnzeige
 (def templst (atom []))
@@ -28,13 +27,10 @@
 (add-watch WeatherData :MMMTemp MMMTemp)
 
 ;;Vorhersageanzeige
-
 (defn vorheranz [_ _ {old-p :presure} {cur-p :presure}]
   (println "Vorhersage: "(cond
     (> old-p cur-p) "Wetter wird besser"
     (< old-p cur-p) "Es wird kälter"
     (= old-p  cur-p) "Es bleibt wies ist.")))
 
-
 (add-watch WeatherData :vorheranz vorheranz)
-
