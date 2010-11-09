@@ -1,4 +1,23 @@
 \documentclass[compress, blue]{beamer}
+
+\NeedsTeXFormat{LaTeX2e}
+
+
+% German
+\RequirePackage[ngerman]{babel}
+
+% Read input file as UTF-8
+\RequirePackage[utf8]{inputenc}
+% Font encoding: T1 for european languages
+
+\RequirePackage[T1]{fontenc}
+% Textcomp for 128 more characters (including EUR)
+\RequirePackage{textcomp}
+
+% Latin Modern instead of Computer Modern
+\RequirePackage{lmodern}
+
+
 \mode<presentation>
 \usetheme{Warsaw} % Beamer Theme
 % other themes: Warsaw, AnnArbor, Antibes, Bergen, Berkeley, Berlin, Boadilla, boxes, CambridgeUS, Copenhagen, Darmstadt, default, Dresden, Frankfurt, Goettingen,
@@ -7,10 +26,10 @@
 \usecolortheme{orchid} % Beamer Color Theme
 % color themes: albatross, beaver, beetle, crane, default, dolphin, dov, fly, lily, orchid, rose, seagull, seahorse, sidebartab, structure, whale, wolverine
 
-%\hypersetup{pdfpagemode=FullScreen} % makes your presentation go automatically to full screen
+\hypersetup{pdfpagemode=FullScreen} % makes your presentation go automatically to full screen
 
-%\useoutertheme[subsection=false]{smoothbars} % Beamer Outer Theme
-%\useinnertheme{rectangles} % Beamer Inner Theme
+\useoutertheme[subsection=false]{smoothbars} % Beamer Outer Theme
+\useinnertheme{rectangles} % Beamer Inner Theme
 
 \usepackage{listings}
 \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
@@ -37,7 +56,7 @@
 %escapeinside={\%*}{*)},         % if you want to add a comment within your code
 %}
 
-%\setbeamercovered{dynamic}
+\setbeamercovered{dynamic}
 
 \begin{document}
 \title{Entwurfsmuster in dynamischen Sprachen}
@@ -49,32 +68,38 @@
   \titlepage
 \end{frame}
 
-\begin{frame}\frametitle{Wie und Warum}
+\begin{frame}\frametitle{Warum und Wie}
+
 \begin{center}
-  %\begin{tabular}{l  l}
-  %  Wer? & Wie?\\
-  %  \hline
-  %  Sprecher, Michael & Python\\
-  %  Zbinden, Nick & Clojure\\
-  %\end{tabular}
-  %\vspace{1cm}
+\begin{tabular}{l  l}
+  Wer? & Wie?\\
+  \hline
+  Sprecher, Michael & Python\\
+  Zbinden, Nick & Clojure\\
+\end{tabular}
+\end{center}
+\vspace{0.2cm}
 
 \begin{block}{Warum:}
   Um zu zeigen, dass es noch etwas anderes gibt als statisch
   typisierte objektorientiert Sprachen.
 \end{block}
 
-%\begin{block}{Vorlage: Java}
-%  \begin{itemize}
-%    \item limitier statisch typisiert
-%    \item classenbasiertes OO
-%    \item kaum support für FP
-%  \end{itemize}
-%\end{block}
+\begin{block}{Vorlage: Java}
+  \begin{itemize}
+    \item limitier statisch typisiert (weakly)
+    \item classenbasiertes OO
+    \item kaum support für FP
+  \end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}\frametitle{Wie und Warum}
 
 \begin{block}{Michael: Python}
   \begin{itemize}
-    \item dynamisch typisiert
+    \item dynamisch typisiert (strongly)
     \item classenbasiertes OO
     \item limiter support für FP
   \end{itemize}
@@ -82,24 +107,69 @@
 
 \begin{block}{Nick: Clojure}
   \begin{itemize}
-    \item dynamisch
+    \item dynamisch typisiert (strongly)
     \item OO durch multimethods und records
     \item starker support für FP
   \end{itemize}
 \end{block}
+\end{frame}
 
-\end{center}
+\begin{frame}\frametitle{Functional Programming}
+  \begin{itemize}
+  \item Closure.\pause
+    \begin{itemize}
+      \item Closure können wie jede andere Variabel behandelt werden.\pause
+      \item können in eine Variabeln gespeichert werden.\pause
+      \item diese Variabeln können an Funktionen übergeben werden.\pause
+      \item sie können anonym erstellt werden (wie string
+        z.B. "anonymer string" \pause
+    \end{itemize}
+  \end{itemize}
+
+  \begin{itemize}
+  \item pure functions \pause
+    \begin{itemize}
+       \item funktionen ohne  seiteneffekte \pause
+       \item Warum? \pause
+         \begin{itemize}
+          \item einfache testen und debuggen \pause
+          \item einfacher nach zu vollziehen \pause
+          \item kann vom Compiler besser obtimiert werden \pause
+          \item können einfach parallelisiert werden \pause
+         \end{itemize}
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Functional Programming}
+
+  \begin{itemize}
+  \item no mutable globale state \pause
+    \begin{itemize}
+       \item Das geht natürlich nicht immer! Aber das Ziel sehr gross
+         geschrieben! \pause
+    \end{itemize}
+  \end{itemize}
+
+  \begin{itemize}
+  \item immutable Data-Structures \pause
+    \begin{itemize}
+       \item Bei jeder Änderung kommt eine neue Daten
+         zurück.\pause
+    \end{itemize}
+  \end{itemize}
+  
 \end{frame}
 
 %Strategie Pattern
-
   %Clojure
 
 \begin{frame}\frametitle{Strategie Pattern in Clojure}
   \begin{enumerate}
-  \item Strategien: anstelle von Objekte benützen wir Funktionen
+  \item Strategien: anstelle von Objekte benützen wir ganz normale Funktionen
     \pause
-  \item Enten: anstelle von benützen wir hash-maps 
+  \item Enten: anstelle von benützen wir hash-maps
     \pause
   \item Keine Basisklasse nur Funktionen die Strategien ausführen 
     \pause
@@ -118,13 +188,111 @@
 
   %Zusammenfassungsslide
 
-\begin{frame}\frametitle{Fazit:}
-
+\begin{frame}\frametitle{Strategie Pattern Fazit:}
   \begin{tabular}{l | l l l}
      & Java &  Python & Clojure  \\
+     \hline
     LoC & 123 &  nil & 23  \\
   \end{tabular}
-  \vspace{1cm}
+  \vspace{.5cm}
+
+  \begin{block}{Michael:}
+    %Dein Schlauer satz
+    %einfach das etwas darin ist
+    Python kann dank dynamik einiges gut machen.
+  \end{block}
+
+  \begin{block}{Nick: }
+    First Class Functions sind ein muss für jede Programmiersprache.
+  \end{block}
+
+\end{frame}
+
+%End
+
+
+%Strategie Pattern
+  %Clojure
+
+\begin{frame}\frametitle{Strategie Pattern in Clojure}
+  \begin{enumerate}
+  \item Strategien: anstelle von Objekte benützen wir ganz normale Funktionen
+    \pause
+  \item Enten: anstelle von benützen wir hash-maps
+    \pause
+  \item Keine Basisklasse nur Funktionen die Strategien ausführen 
+    \pause
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{Strategien = Funktionen}
+  
+\end{frame}
+
+  %End Clojure
+
+  %Python 
+
+  %End Python
+
+  %Zusammenfassungsslide
+
+\begin{frame}\frametitle{Singelton Fazit:}
+  \begin{tabular}{l | l l l}
+     & Java &  Python & Clojure  \\
+     \hline
+    LoC & nil &  nil & nil  \\
+  \end{tabular}
+  \vspace{.5cm}
+
+  \begin{block}{Michael:}
+    %Dein Schlauer satz
+    %einfach das etwas darin ist
+    Python kann dank dynamik einiges gut machen.
+  \end{block}
+
+  \begin{block}{Nick: }
+    First Class Functions sind ein muss für jede Programmiersprache.
+  \end{block}
+
+\end{frame}
+
+%End
+
+
+%Strategie Pattern
+  %Clojure
+
+\begin{frame}\frametitle{Strategie Pattern in Clojure}
+  \begin{enumerate}
+  \item Strategien: anstelle von Objekte benützen wir ganz normale Funktionen
+    \pause
+  \item Enten: anstelle von benützen wir hash-maps
+    \pause
+  \item Keine Basisklasse nur Funktionen die Strategien ausführen 
+    \pause
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{Strategien = Funktionen}
+  
+\end{frame}
+
+  %End Clojure
+
+  %Python 
+
+  %End Python
+
+  %Zusammenfassungsslide
+
+\begin{frame}\frametitle{Strategie Pattern Fazit:}
+  \begin{tabular}{l | l l l}
+     & Java &  Python & Clojure  \\
+     \hline
+    LoC & 123 &  nil & 23  \\
+  \end{tabular}
+  \vspace{.5cm}
 
   \begin{block}{Michael:}
     %Dein Schlauer satz
@@ -153,7 +321,7 @@
   \begin{center}
     \begin{itemize}
       \item Clojure bittet fantastischen library support.
-      \item First Class Functions werden auch hier gewinnbringend
+      \item First Class Functions werden auch hier forteilhaft
         eingesetzt.
     \end{itemize}    
   \end{center}
@@ -169,9 +337,10 @@
 
   %Zusammenfassungsslide
 
-\begin{frame}\frametitle{Fazit:}
+\begin{frame}\frametitle{Observer Fazit:}
     \begin{tabular}{l | l l l}
      & Java &  Python & Clojure  \\
+     \hline
     LoC & 128 &  nil & 19  \\
   \end{tabular}
   
@@ -193,15 +362,16 @@
   %End Python
 
   %Zusammenfassungsslide
-\begin{frame}\frametitle{Fazit:}
+\begin{frame}\frametitle{Decorater Fazit:}
     \begin{tabular}{l | l l l}
      & Java &  Python & Clojure  \\
-    LoC & 100 &  nil & 25  \\
+     \hline
+    LoC & 100 &  nil & 24  \\
   \end{tabular}
-  
-  \begin{block}{Nick:}
-    Trotz dessen, dass beide Sprachen library support anbieten kann
-    Clojure mit ein mehr als 6 mal kürzeren Code das gleich erreichen.
+  \begin{block}{Nick: }
+    Clojure erlaubtes einen völlig generischen ansatz zu verwenden der
+    Daten und Logik trennt. Diese erlaubt es die funktionen 1:1 weiter
+    zu verwenden.
   \end{block}
 \end{frame}
 %End

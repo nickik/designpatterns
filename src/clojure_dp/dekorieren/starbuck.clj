@@ -13,10 +13,9 @@
   (reduce reduce-fn (map (fn [k] (get-in Zutaten [k key_])) lst-zutaten)))
 
 (defn GetränkName [Getränke Zutaten basis lst-zutaten]
-  (str (get-in Getränke [basis :name])
-       " "
+  (str (get-in Getränke [basis :name]) " "
        (GetGetränk Zutaten :name
-                   (fn [s1 s2] (str s1 \, " " s2))
+                   #(str %1 \, " " %2)
                    basis
                    lst-zutaten)))
 
