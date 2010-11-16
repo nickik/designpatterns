@@ -1,22 +1,16 @@
 \documentclass[compress, blue]{beamer}
 
 \NeedsTeXFormat{LaTeX2e}
-
-
 % German
 \RequirePackage[ngerman]{babel}
-
 % Read input file as UTF-8
 \RequirePackage[utf8]{inputenc}
 % Font encoding: T1 for european languages
-
 \RequirePackage[T1]{fontenc}
 % Textcomp for 128 more characters (including EUR)
 \RequirePackage{textcomp}
-
 % Latin Modern instead of Computer Modern
 \RequirePackage{lmodern}
-
 
 \mode<presentation>
 \usetheme{Warsaw} % Beamer Theme
@@ -26,39 +20,44 @@
 \usecolortheme{orchid} % Beamer Color Theme
 % color themes: albatross, beaver, beetle, crane, default, dolphin, dov, fly, lily, orchid, rose, seagull, seahorse, sidebartab, structure, whale, wolverine
 
-\hypersetup{pdfpagemode=FullScreen} % makes your presentation go automatically to full screen
-
 \useoutertheme[subsection=false]{smoothbars} % Beamer Outer Theme
 \useinnertheme{rectangles} % Beamer Inner Theme
 
 \usepackage{listings}
 \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
-
-%\lstset{ 
-%language=Octave,                  % choose the language of the code
-%basicstyle=\footnotesize,       % the size of the fonts that are used for the code
-%numbers=left,                   % where to put the line-numbers
-%numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
-%stepnumber=1,                   % the step between two line-numbers. If it's 1 each line 
-                               % will be numbered
-%numbersep=5pt,                  % how far the line-numbers are from the code
-%backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
-%showspaces=false,               % show spaces adding particular underscores
-%showstringspaces=false,         % underline spaces within strings
-%showtabs=false,                 % show tabs within strings adding particular underscores
-%frame=single,	                % adds a frame around the code
-%tabsize=2,	                % sets default tabsize to 2 spaces
-%captionpos=b,                   % sets the caption-position to bottom
-%breaklines=true,                % sets automatic line breaking
-%breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-%title=\lstname,                 % show the filename of files included with \lstinputlisting;
-                                % also try caption instead of title
-%escapeinside={\%*}{*)},         % if you want to add a comment within your code
-%}
-
 \setbeamercovered{dynamic}
 
+\lstdefinelanguage{Clojure}
+  {morekeywords={ def,
+add-watch, agent, agent-error, agent-errors, aget, alength, alias, all-ns, alter, alter-meta!, alter-var-root, amap, ancestors, and, apply, areduce, array-map, aset, aset-boolean, aset-byte, aset-char, aset-double, aset-float, aset-int, aset-long, aset-short, assert, assoc, assoc!, assoc-in, associative?, atom, await, await-for, bases, bean, bigdec, bigint, binding, bit-and, bit-and-not, bit-clear, bit-flip, bit-not, bit-or, bit-set, bit-shift-left, bit-shift-right, bit-test, bit-xor, boolean, boolean-array, booleans, bound-fn, bound-fn*, bound?, butlast, byte, byte-array, bytes, case, cast, char, char-array, char-escape-string, char-name-string, char?, chars, class, class?, clear-agent-errors, clojure-version, coll?, comment, commute, comp, comparator, compare, compare-and-set!, compile, complement, concat, cond, condp, conj, conj!, cons, constantly, construct-proxy, contains?, count, counted?, create-ns, create-struct, cycle, dec, decimal?, declare, definline, defmacro, defmethod, defmulti, defn, defn-, defonce, defprotocol, defrecord, defstruct, deftype, delay, delay?, deliver, denominator, deref, derive, descendants, disj, disj!, dissoc, dissoc!, distinct, distinct?, doall, doc, dorun, doseq, dosync, dotimes, doto, double, double-array, doubles, drop, drop-last, drop-while, empty, empty?, ensure, enumeration-seq, error-handler, error-mode, eval, even?, every?, extend, extend-protocol, extend-type, extenders, extends?, false?, ffirst, file-seq, filter, find, find-doc, find-ns, find-var, first, flatten, float, float-array, float?, floats, flush, fn, fn?, fnext, fnil, for, force, format, frequencies, future, future-call, future-cancel, future-cancelled?, future-done?, future?, gen-class, gen-interface, gensym, get, get-in, get-method, get-proxy-class, get-thread-bindings, get-validator, group-by, hash, hash-map, hash-set, identical?, identity, if-let, if-not, ifn?, import, in-ns, inc, init-proxy, instance?, int, int-array, integer?, interleave, intern, interpose, into, into-array, ints, io!, isa?, iterate, iterator-seq, juxt, keep, keep-indexed, key, keys, keyword, keyword?, last, lazy-cat, lazy-seq, let, letfn, line-seq, list, list*, list?, load, load-file, load-reader, load-string, loaded-libs, locking, long, long-array, longs, loop, macroexpand, macroexpand-1, make-array, make-hierarchy, map, map-indexed, map?, mapcat, max, max-key, memfn, memoize, merge, merge-with, meta, methods, min, min-key, mod, name, namespace, namespace-munge, neg?, newline, next, nfirst, nil?, nnext, not, not-any?, not-empty, not-every?, not=, ns, ns-aliases, ns-imports, ns-interns, ns-map, ns-name, ns-publics, ns-refers, ns-resolve, ns-unalias, ns-unmap, nth, nthnext, num, number?, numerator, object-array, odd?, or, parents, partial, partition, partition-all, partition-by, pcalls, peek, persistent!, pmap, pop, pop!, pop-thread-bindings, pos?, pr, pr-str, prefer-method, prefers, print, print-namespace-doc, print-str, printf, println, println-str, prn, prn-str, promise, proxy, proxy-mappings, proxy-super, push-thread-bindings, pvalues, quot, rand, rand-int, rand-nth, range, ratio?, rationalize, re-find, re-groups, re-matcher, re-matches, re-pattern, re-seq, read, read-line, read-string, reduce, reductions, ref, ref-history-count, ref-max-history, ref-min-history, ref-set, refer, refer-clojure, reify, release-pending-sends, rem, remove, remove-all-methods, remove-method, remove-ns, remove-watch, repeat, repeatedly, replace, replicate, require, reset!, reset-meta!, resolve, rest, restart-agent, resultset-seq, reverse, reversible?, rseq, rsubseq, satisfies?, second, select-keys, send, send-off, seq, seq?, seque, sequence, sequential?, set, set-error-handler!, set-error-mode!, set-validator!, set?, short, short-array, shorts, shuffle, shutdown-agents, slurp, some, sort, sort-by, sorted-map, sorted-map-by, sorted-set, sorted-set-by, sorted?, special-form-anchor, special-symbol?, spit, split-at, split-with, str, string?, struct, struct-map, subs, subseq, subvec, supers, swap!, symbol, symbol?, sync, syntax-symbol-anchor, take, take-last, take-nth, take-while, test, the-ns, thread-bound?, time, to-array, to-array-2d, trampoline, transient, tree-seq, true?, type, unchecked-add, unchecked-dec, unchecked-divide, unchecked-inc, unchecked-multiply, unchecked-negate, unchecked-remainder, unchecked-subtract, underive, update-in, update-proxy, use, val, vals, var-get, var-set, var?, vary-meta, vec, vector, vector-of, vector?, when, when-first, when-let, when-not, while, with-bindings, with-bindings*, with-in-str, with-local-vars, with-meta, with-open, with-out-str, with-precision, xml-seq, zero?, zipmap
+},
+    sensitive=false,
+    morecomment=[l]{;;},
+    morestring=[b]",
+  }
+
+\lstset{
+language=Clojure,               % choose the language of the code
+basicstyle=\small,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\tiny,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it's 1 each line 
+                                % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,	                % adds a frame around the code
+tabsize=2,	                % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=false,                % sets automatic line breaking
+breakatwhitespace=true,        % sets if automatic breaks should only happen at whitespace
+}
+
+
 \begin{document}
+
 \title{Entwurfsmuster in dynamischen Sprachen}
 \subtitle{Ein vergleich von Java, Python und Clojure}
 \author{Nick Zbinden und Michael Sprecher}
@@ -122,7 +121,7 @@
       \item können in eine Variabeln gespeichert werden.\pause
       \item diese Variabeln können an Funktionen übergeben werden.\pause
       \item sie können anonym erstellt werden (wie string
-        z.B. "anonymer string" \pause
+        z.B. "anonymer string") \pause
     \end{itemize}
   \end{itemize}
 
@@ -139,11 +138,10 @@
          \end{itemize}
     \end{itemize}
   \end{itemize}
-
 \end{frame}
 
-\begin{frame}\frametitle{Functional Programming}
 
+\begin{frame}\frametitle{Functional Programming}
   \begin{itemize}
   \item no mutable globale state \pause
     \begin{itemize}
@@ -159,123 +157,33 @@
          zurück.\pause
     \end{itemize}
   \end{itemize}
-  
 \end{frame}
 
 %Strategie Pattern
   %Clojure
 
-\begin{frame}\frametitle{Strategie Pattern in Clojure}
-  \begin{enumerate}
-  \item Strategien: anstelle von Objekte benützen wir ganz normale Funktionen
-    \pause
-  \item Enten: anstelle von benützen wir hash-maps
-    \pause
-  \item Keine Basisklasse nur Funktionen die Strategien ausführen 
-    \pause
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}\frametitle{Strategien = Funktionen}
+\begin{frame}[fragile]\frametitle{Strategie Pattern in Clojure}
   
-\end{frame}
-
-  %End Clojure
-
-  %Python 
-
-  %End Python
-
-  %Zusammenfassungsslide
-
-\begin{frame}\frametitle{Strategie Pattern Fazit:}
-  \begin{tabular}{l | l l l}
-     & Java &  Python & Clojure  \\
-     \hline
-    LoC & 123 &  nil & 23  \\
-  \end{tabular}
-  \vspace{.5cm}
-
-  \begin{block}{Michael:}
-    %Dein Schlauer satz
-    %einfach das etwas darin ist
-    Python kann dank dynamik einiges gut machen.
-  \end{block}
-
-  \begin{block}{Nick: }
-    First Class Functions sind ein muss für jede Programmiersprache.
-  \end{block}
-
-\end{frame}
-
-%End
-
-
-%Strategie Pattern
-  %Clojure
-
-\begin{frame}\frametitle{Strategie Pattern in Clojure}
-  \begin{enumerate}
-  \item Strategien: anstelle von Objekte benützen wir ganz normale Funktionen
-    \pause
-  \item Enten: anstelle von benützen wir hash-maps
-    \pause
-  \item Keine Basisklasse nur Funktionen die Strategien ausführen 
-    \pause
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}\frametitle{Strategien = Funktionen}
-  
-\end{frame}
-
-  %End Clojure
-
-  %Python 
-
-  %End Python
-
-  %Zusammenfassungsslide
-
-\begin{frame}\frametitle{Singelton Fazit:}
-  \begin{tabular}{l | l l l}
-     & Java &  Python & Clojure  \\
-     \hline
-    LoC & nil &  nil & nil  \\
-  \end{tabular}
-  \vspace{.5cm}
-
-  \begin{block}{Michael:}
-    %Dein Schlauer satz
-    %einfach das etwas darin ist
-    Python kann dank dynamik einiges gut machen.
-  \end{block}
-
-  \begin{block}{Nick: }
-    First Class Functions sind ein muss für jede Programmiersprache.
-  \end{block}
-
-\end{frame}
-
-%End
-
-
-%Strategie Pattern
-  %Clojure
-
-\begin{frame}\frametitle{Strategie Pattern in Clojure}
-  \begin{enumerate}
-  \item Strategien: anstelle von Objekte benützen wir ganz normale Funktionen
-    \pause
-  \item Enten: anstelle von benützen wir hash-maps
-    \pause
-  \item Keine Basisklasse nur Funktionen die Strategien ausführen 
-    \pause
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}\frametitle{Strategien = Funktionen}
-  
+Strategien: anstelle von Objekte benützen wir ganz normale Funktionen
+\begin{lstlisting}
+  (defn normalflug []
+    "normaler Flug")
+\end{lstlisting} 
+\pause
+Enten: anstelle von benützen wir hash-maps
+\begin{lstlisting}
+  (defn ente [anzeigen flug ton]
+    {:show anzeigen :fly flug :ton ton})
+  (def StockEnte 
+    (ente "StockEnte" normalflug  quaken))
+\end{lstlisting}
+\pause
+Keine Basisklasse nur Funktionen die Strategien ausführen 
+\begin{lstlisting}
+  (defn fliegen [Ente]
+    ((:fly Ente)))
+\end{lstlisting} 
+\pause
 \end{frame}
 
   %End Clojure
@@ -311,21 +219,29 @@
 %Strategie Observer
 
   %Clojure
+\begin{frame}[fragile]\frametitle{Clojure Observer}
 
-\begin{frame}\frametitle{Clojure Observer}
-
-  \begin{block}{Merke:}    
-     Globaler State ist in FP Sprachen (sehr) selten.
-  \end{block}
-
-  \begin{center}
-    \begin{itemize}
-      \item Clojure bittet fantastischen library support.
-      \item First Class Functions werden auch hier forteilhaft
-        eingesetzt.
-    \end{itemize}    
-  \end{center}
-
+Global State:
+  \begin{lstlisting}
+    (def WeatherData (ref {:temperature 10 
+                           :humidity 20 
+                           :presure 15}))
+  \end{lstlisting}
+\pause
+Erhält daten gibt sie richtig aus:
+\pause
+\begin{lstlisting}
+(defn CCDDisplay [old-state {:keys [temperature 
+                                    humidity]}]
+(println "Current conditions: " temperature 
+         "F degrees and " humidity "% humidity"))
+\end{lstlisting}
+\pause
+Jetzt müssen wir sie nur noch richtig verbinden.
+\pause
+\begin{lstlisting}
+(add-watch  WeatherData :CCDDisplay CCDDisplay)
+\end{lstlisting}
 \end{frame}
 
   %End Clojure
@@ -345,15 +261,91 @@
   \end{tabular}
   
   \begin{block}{Nick:}
-    Trotz dessen, dass beide Sprachen library support anbieten kann
-    Clojure mit ein mehr als 6 mal kürzeren Code das gleich erreichen.
+    Trotz dessen, dass Java und Clojure Sprachen library support anbieten kann
+    Clojure mit ein mehr als 6 mal kürzeren Code das gleich
+    erreichen. Das zeigt wie schön man funktionale dynamische liberys
+    sein können.
   \end{block}
 \end{frame}
 
 %End
 
+
+
 %Strategie Decorater
   %Clojure
+
+\begin{frame}\frametitle{Decorater Clojure:}
+
+  \begin{block}{Problem mit dem Decorater:}
+    \begin{itemize}
+    \item Daten und Logik sind durcheinander
+    \item Logik ist an die Daten gekettet
+    \item d.h. Die logik kann nicht wieder verwendet werden
+    \item Lösung: Trennung von Daten und Logik
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Decorater Clojure:}
+Keine Logik bei den Daten:
+ \begin{lstlisting}
+(def Zutaten {:schoko {:preis 0.2
+                       :name "Schoko"}
+              :soja {:preis 0.15 
+                     :name "Soja"}})
+(def Getaenke {:hausmischung {:preis 0.89 
+                               :name "Hausmischung"}
+               :espresso {:preis 1.99 
+                          :name "Esspresso"}})
+ \end{lstlisting}
+\pause
+
+Machen wir bottum-up programming und fangen mit der API an.
+
+\begin{lstlisting}
+(BuyGetraenk <Hauptgetraenkt>  <List von Zutaten>)
+\end{lstlisting}
+\pause
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Decorater Clojure:}
+
+Lass uns den Preis berechnen:
+
+  \begin{lstlisting}
+    (defn GetraenkPreis [basis lst-zutaten]
+    ;; basis = :espresso
+    ;; zutaten = [:schoko :milchschaum]
+     (+ (get-in Getraenke [basis :preis])
+        (GetData :preis lst-zutaten +)))
+    ;; (GetData <welche Daten> <welche Zutaten> <wie zusammenziehen>)
+  \end{lstlisting}
+\pause
+
+Jetzt lesen wir den Namen heraus:
+
+  \begin{lstlisting}
+(defn GetraenkName [basis lst-zutaten]
+  ;; basis = :espresso
+  ;; lst-zutaten =  [:schoko :milchschaum]
+  (str (get-in Getraenke [basis :name]) " "
+       (GetData :name lst-zutaten #(str \%1 \, " " \%2))))
+  ;; (GetData <welche Daten> <welche Zutaten> <wie zusammenziehen>)
+  \end{lstlisting}
+\pause
+
+\end{frame}
+
+\begin{frame}[fragiel]\frametitle{Decorater Clojure:}
+  Ok, jetzt wirds schwer.
+
+\begin{lstlisting}
+(defn GetGetraenk [basis lst-zutaten Zusammenfasser]
+  (reduce Zusammenfasser (map (fn [k] (get-in Zutaten [k basis])) lst-zutaten)))  
+\end{lstlisting}
+\pause
+\end{frame}
 
   %End Clojure
 
@@ -369,7 +361,7 @@
     LoC & 100 &  nil & 24  \\
   \end{tabular}
   \begin{block}{Nick: }
-    Clojure erlaubtes einen völlig generischen ansatz zu verwenden der
+    Clojure erlaubtes einen voellig generischen ansatz zu verwenden der
     Daten und Logik trennt. Diese erlaubt es die funktionen 1:1 weiter
     zu verwenden.
   \end{block}

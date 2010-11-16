@@ -9,19 +9,18 @@
               :soja {:preis 0.15 :name "Soja"}
               :milchschaum {:preis 0.1 :name "Milchschaum"}})
 
-(defn GetGetränk [Zutaten key_ reduce-fn basi  lst-zutaten]
+(defn GetGetränk [Zutaten key_ reduce-fn lst-zutaten]
   (reduce reduce-fn (map (fn [k] (get-in Zutaten [k key_])) lst-zutaten)))
 
 (defn GetränkName [Getränke Zutaten basis lst-zutaten]
   (str (get-in Getränke [basis :name]) " "
        (GetGetränk Zutaten :name
                    #(str %1 \, " " %2)
-                   basis
                    lst-zutaten)))
 
 (defn GetränkPreis [Getränke Zutaten  basis lst-zutaten]
      (+ (get-in Getränke [basis :preis])
-        (GetGetränk Zutaten :preis + basis lst-zutaten)))
+        (GetGetränk Zutaten :preis + lst-zutaten)))
 
 (defn Getränk [Getränke Zutaten b lst]
   (if (seq lst)
@@ -29,11 +28,10 @@
          (GetränkPreis Getränke Zutaten b lst) "$")
     (str (get-in Getränke [b :name]) ": " (get-in Getränke [b :preis]))))
 
+(def BuyGetraenk (partial Getränk Getränke Zutaten))
+
 (defn StarbuckTestOutput []
-  (println (Getränk  Getränke Zutaten
-                             :espresso []))
-  (println (Getränk  Getränke Zutaten
-                             :dunkle-röstung [:schoko :schoko :milchschaum]))
-  (println (Getränk  Getränke Zutaten
-                             :hausmischung [:soja :schoko :milchschaum])))
+  (println (BuyGetraenk :espresso []))
+  (println (BuyGetraenk :dunkle-röstung [:schoko :schoko :milchschaum]))
+  (println (BuyGetraenk :hausmischung [:soja :schoko :milchschaum])))
 
