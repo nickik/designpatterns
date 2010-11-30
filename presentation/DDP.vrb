@@ -1,0 +1,29 @@
+\frametitle {Clojure Factory}
+
+Funktionen die alles zurückgeben was wir brauchen.
+\pause
+\begin{lstlisting}
+(defn bestelle [F T]
+  (let [pizza (BestellePizza F T)]
+    {:zubereitung (str (MachEine pizza) "\n"
+                       (Vorbereitung pizza) "\n"
+                       (:backen pizza) "\n"
+                       (:schneiden pizza) "\n"
+                       (:verpackung pizza) "\n")
+     :pizza pizza}))
+\end{lstlisting}
+\pause
+Funktion um den Namen auszulesen.
+\pause
+\begin{lstlisting}
+(defn Pizza-Name [F T]
+  (:name :pizza (bestelle F T)))
+\end{lstlisting}
+\pause
+Eine Beispiel.
+\pause
+\begin{lstlisting}
+(println "Ethan bestellte eine "
+          (Pizza-Name "Berlin" "Salami"))
+\end{lstlisting}
+
