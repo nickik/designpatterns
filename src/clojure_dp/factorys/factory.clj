@@ -13,7 +13,7 @@
 
 (defmulti BestellePizza  (fn [Filial Typ] [Filial Typ]))
 (defmethod BestellePizza ["Berlin" "Vegetarisch"] [F T]
-           (getPizza "Vegetarische Pizza Berliner Art";
+           (getPizza "Vegetarische Pizza Berliner Art"
                      "Teig mit fester Kruste"
                      "Marinara-Soße"
                      ["Geriebener Parmesan" "Knoblauch" "Zwiebeln" "Pilze" "Rote Paprika"]))
@@ -65,21 +65,20 @@
            (println "Keine Gültige Pizza"))
 
 (defn Vorbereitung [pizza]
-  (apply str "Vorbereitung ..." \n
-             "Teig knetten" \n
-             "Sosse hinzufügen" \n
-             "belegen mit " (interpose " "(:belag Pizza))))
+  (apply str "Vorbereitung ...\n"
+             "Teig knetten \n"
+             "Sosse hinzufügen \n"
+             "belegen mit " (interpose " "(:belag pizza))))
 
-(defn MachEine [pizza] (str "Mach eine: " (:name Pizza)))
+(defn MachEine [pizza] (str "Mach eine: " (:name pizza)))
 
 (defn bestelle [F T]
   (let [pizza (BestellePizza F T)]
-    [(-> pizza
-         MachEine
-         Vorbereitung
-         :backen
-         :schneiden
-         :verpackung)
+    [(str (MachEine pizza) "\n"
+          (Vorbereitung pizza) "\n"
+          (:backen pizza) "\n"
+         (:schneiden pizza) "\n"
+         (:verpackung pizza) "\n")
      pizza]))
 
 ;;Testdrive

@@ -170,7 +170,7 @@ Strategien: anstelle von Objekte benützen wir ganz normale Funktionen
     "normaler Flug")
 \end{lstlisting} 
 \pause
-Enten: anstelle von benützen wir hash-maps
+Enten: anstelle von Enten  benützen wir hash-maps
 \begin{lstlisting}
   (defn ente [anzeigen flug ton]
     {:show anzeigen :fly flug :ton ton})
@@ -211,13 +211,10 @@ Keine Basisklasse nur Funktionen die Strategien ausführen
   \begin{block}{Nick: }
     First Class Functions sind ein muss für jede Programmiersprache.
   \end{block}
-
 \end{frame}
-
 %End
 
 %Strategie Observer
-
   %Clojure
 \begin{frame}[fragile]\frametitle{Clojure Observer}
 
@@ -270,8 +267,6 @@ Jetzt müssen wir sie nur noch richtig verbinden.
 
 %End
 
-
-
 %Strategie Decorater
   %Clojure
 
@@ -302,7 +297,7 @@ Keine Logik bei den Daten:
 \pause
 
 Machen wir bottum-up programming und fangen mit der API an.
-
+\pause
 \begin{lstlisting}
 (BuyGetraenk <Hauptgetraenkt>  <List von Zutaten>)
 \end{lstlisting}
@@ -325,11 +320,13 @@ Lass uns den Preis berechnen:
 
 Jetzt lesen wir den Namen heraus:
 
+"Expresso: schoko milchschaum"
+
   \begin{lstlisting}
 (defn GetraenkName [basis lst-zutaten]
   ;; basis = :espresso
   ;; lst-zutaten =  [:schoko :milchschaum]
-  (str (get-in Getraenke [basis :name]) " "
+  (str (get-in Getraenke [basis :name]) ": "
        (GetData :name lst-zutaten #(str \%1 \, " " \%2))))
   ;; (GetData <welche Daten> <welche Zutaten> <wie zusammenziehen>)
   \end{lstlisting}
@@ -367,5 +364,43 @@ Jetzt lesen wir den Namen heraus:
   \end{block}
 \end{frame}
 %End
+
+
+%Factory Muster
+  %Clojure
+\begin{frame}[fragile]\frametitle{Clojure Factory}
+
+  Erstellen wir "Eine Klasse".
+  \begin{lstlisting}
+    (defrecord Pizza [name teig sosse belag backen schneiden verpackung])
+  \end{lstlisting}
+\pause
+
+
+\end{frame}
+
+  %End Clojure
+
+  %Python 
+
+
+  %End Python
+
+  %Zusammenfassungsslide
+
+\begin{frame}\frametitle{Observer Fazit:}
+    \begin{tabular}{l | l l l}
+     & Java &  Python & Clojure  \\
+     \hline
+    LoC & 128 &  nil & 19  \\
+  \end{tabular}
+  
+  \begin{block}{Nick:}
+
+  \end{block}
+\end{frame}
+
+%End
+
 
 \end{document}
