@@ -23,3 +23,5 @@
 *.synctex.gz
 *.pdf
 *.vrb
+*.snm
+*.nav
